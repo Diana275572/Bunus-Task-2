@@ -1,0 +1,26 @@
+public class Maze {
+    private int playerPosition;
+    private final int mazeLength;
+
+    public Maze(int mazeLength) {
+        this.mazeLength = mazeLength;
+        this.playerPosition = 0;
+    }
+
+    public void moveRight() {
+        playerPosition++;
+    }
+
+    public void moveLeft() {
+        playerPosition = Math.max(0, playerPosition - 1); 
+    }
+
+    public int getPlayerPosition() {
+        return playerPosition;
+    }
+
+
+    public boolean isAtEnd() {
+        return playerPosition >= mazeLength - 1;
+    }
+}
