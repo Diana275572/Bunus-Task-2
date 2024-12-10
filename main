@@ -1,0 +1,8 @@
+public class Main {
+    public static void main(String[] args) {
+        int mazeLength = 10;
+        Game game = new Game(mazeLength);
+        game.start();
+            }
+        }
+
