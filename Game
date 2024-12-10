@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Game {
+    private Maze maze;
+    private Scanner scanner;
+
+    public Game(int mazeLength) {
+        this.maze = new Maze(mazeLength);
+        this.scanner = new Scanner(System.in);
+    }
+    public void start() {
+        System.out.println("Welcome to the 'Maze with Math Questions' game!");
+        System.out.println("Rules:");
+        System.out.println("- A correct answer moves you to the right.");
+        System.out.println("- An incorrect answer moves you to the left.");
+        System.out.println("- Reach the end of the maze to win!");
+        System.out.println();
+
+        while (!maze.isAtEnd()) {
+            MathQuestion question = new MathQuestion();
+            System.out.println("Your current position: " + maze.getPlayerPosition());
+            System.out.println("Question: " + question.getQuestion());
+            System.out.print("Your answer: ");
+            int answer;
+            try {
+                answer = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a number.");
+                continue;
+            }
+
+            if (question.checkAnswer(answer)) {
+                System.out.println("Correct! You moved to the right.");
+                maze.moveRight();
+            } else {
+                System.out.println("Incorrect. The correct answer was: " + question.getCorrectAnswer());
+                System.out.println("You moved to the left.");
+                maze.moveLeft();
+            }
+        }
+
+        System.out.println("Congratulations! You reached the end of the maze!");
+    }
+}
