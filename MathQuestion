@@ -1,0 +1,30 @@
+import java.util.Random;
+
+public class MathQuestion {
+    private int num1;
+    private int num2;
+    private char operator;
+    private int correctAnswer;
+
+    public MathQuestion() {
+        generateQuestion();
+    }
+    private void generateQuestion() {
+        Random random = new Random();
+        num1 = random.nextInt(10) + 1; 
+        num2 = random.nextInt(10) + 1;
+        operator = random.nextBoolean() ? '+' : '-'; 
+        correctAnswer = (operator == '+') ? (num1 + num2) : (num1 - num2);
+    }
+    public String getQuestion() {
+        return num1 + " " + operator + " " + num2 + " = ?";
+    }
+
+    public boolean checkAnswer(int answer) {
+        return answer == correctAnswer;
+    }
+
+    public int getCorrectAnswer() {
+        return correctAnswer;
+    }
+}
